@@ -9,11 +9,11 @@ import Foundation
 
 // MARK: - GenerateCompletionResponse
 public struct GenerateCompletionResponse: Codable {
-    let model, createdAt, response: String
-    let done: Bool
-    let context: [Int]?
-    let totalDuration, loadDuration, promptEvalCount, promptEvalDuration: Int?
-    let evalCount, evalDuration: Int?
+    public let model, createdAt, response: String
+    public let done: Bool
+    public let context: [Int]?
+    public let totalDuration, loadDuration, promptEvalCount, promptEvalDuration: Int?
+    public let evalCount, evalDuration: Int?
 
     enum CodingKeys: String, CodingKey {
         case model
@@ -30,12 +30,12 @@ public struct GenerateCompletionResponse: Codable {
 
 // MARK: - GenerateChatCompletionResponse
 public struct GenerateChatCompletionResponse: Codable {
-    let model: String
-    let createdAt: String
-    let message: Message
-    let done: Bool
-    let totalDuration, loadDuration, promptEvalCount, promptEvalDuration: Int?
-    let evalCount, evalDuration: Int?
+    public let model: String
+    public let createdAt: String
+    public let message: Message
+    public let done: Bool
+    public let totalDuration, loadDuration, promptEvalCount, promptEvalDuration: Int?
+    public let evalCount, evalDuration: Int?
 
     enum CodingKeys: String, CodingKey {
         case model
@@ -52,12 +52,12 @@ public struct GenerateChatCompletionResponse: Codable {
 
 // MARK: - Message
 public struct Message: Codable {
-    let role: String
-    let content: String
-    let thinking: String?
-    let images: [Data]?
-    let toolCalls: [ToolCall]?
-    
+    public let role: String
+    public let content: String
+    public let thinking: String?
+    public let images: [Data]?
+    public let toolCalls: [ToolCall]?
+
     enum CodingKeys: String, CodingKey {
         case role
         case content
@@ -74,18 +74,18 @@ public struct ToolCall: Codable {
 
 // MARK: - ToolItem
 public struct ToolItem: Codable {
-    let type: ToolItemType
-    let function: ToolItemFunction?
-    
-    enum ToolItemType: Codable {
+    public let type: ToolItemType
+    public let function: ToolItemFunction?
+
+    public enum ToolItemType: Codable {
         case function
     }
 }
 
 public struct ToolItemFunction: Codable {
-    let name: String
-    let description: String
-    
+    public let name: String
+    public let description: String
+
     // TODO:
     // Разобраться с тем как передать
     // объект JSONScheema в этом месте
@@ -94,10 +94,10 @@ public struct ToolItemFunction: Codable {
 
 // MARK: - LocalModelInfo
 public struct LocalModelInfo: Codable {
-    let name, model, modifiedAt: String
-    let size: Int
-    let digest: String
-    let details: Details
+    public let name, model, modifiedAt: String
+    public let size: Int
+    public let digest: String
+    public let details: Details
 
     enum CodingKeys: String, CodingKey {
         case name, model
@@ -108,11 +108,11 @@ public struct LocalModelInfo: Codable {
 
 // MARK: - ModelInfoResponse
 public struct ModelInfoResponse: Codable {
-    let modelfile, parameters, template: String
-    let details: Details
-    let modelInfo: ModelInfo
-    let capabilities: [String]
-    
+    public let modelfile, parameters, template: String
+    public let details: Details
+    public let modelInfo: ModelInfo
+    public let capabilities: [String]
+
     enum CodingKeys: String, CodingKey {
             case modelfile, parameters, template, details
             case modelInfo = "model_info"
@@ -122,17 +122,17 @@ public struct ModelInfoResponse: Codable {
 
 // MARK: - ModelInfo
 public struct ModelInfo: Codable {
-    let generalArchitecture: String
-    let generalFileType, generalParameterCount, generalQuantizationVersion, llamaAttentionHeadCount: Int
-    let llamaAttentionHeadCountKv: Int
-    let llamaAttentionLayerNormRMSEpsilon: Double
-    let llamaBlockCount, llamaContextLength, llamaEmbeddingLength, llamaFeedForwardLength: Int
-    let llamaRopeDimensionCount, llamaRopeFreqBase, llamaVocabSize, tokenizerGgmlBosTokenID: Int
-    let tokenizerGgmlEOSTokenID: Int
-    //let tokenizerGgmlMerges: [Any?]?
-    let tokenizerGgmlModel, tokenizerGgmlPre: String
-    //let tokenizerGgmlTokenType, tokenizerGgmlTokens: [Any?]?
-    
+    public let generalArchitecture: String
+    public let generalFileType, generalParameterCount, generalQuantizationVersion, llamaAttentionHeadCount: Int
+    public let llamaAttentionHeadCountKv: Int
+    public let llamaAttentionLayerNormRMSEpsilon: Double
+    public let llamaBlockCount, llamaContextLength, llamaEmbeddingLength, llamaFeedForwardLength: Int
+    public let llamaRopeDimensionCount, llamaRopeFreqBase, llamaVocabSize, tokenizerGgmlBosTokenID: Int
+    public let tokenizerGgmlEOSTokenID: Int
+    // public let tokenizerGgmlMerges: [Any?]?
+    public let tokenizerGgmlModel, tokenizerGgmlPre: String
+    // public let tokenizerGgmlTokenType, tokenizerGgmlTokens: [Any?]?
+
     enum CodingKeys: String, CodingKey {
         case generalArchitecture = "general.architecture"
         case generalFileType = "general.file_type"
@@ -160,23 +160,23 @@ public struct ModelInfo: Codable {
 
 // MARK: - PushModelResponse
 public struct PushModelResponse: Codable {
-    let status: String
-    let digest: String?
-    let total: Int?
+    public let status: String
+    public let digest: String?
+    public let total: Int?
 }
 
 // MARK: - PullModelResponse
 public struct PullModelResponse: Codable {
-    let status: String
-    let digest: String?
-    let total, completed: Int?
+    public let status: String
+    public let digest: String?
+    public let total, completed: Int?
 }
 
 // MARK: - EmbedResponse
 public struct EmbedResponse: Codable {
-    let model: String
-    let embeddings: [[Double]]
-    let totalDuration, loadDuration, promptEvalCount: Int
+    public let model: String
+    public let embeddings: [[Double]]
+    public let totalDuration, loadDuration, promptEvalCount: Int
 
     enum CodingKeys: String, CodingKey {
         case model, embeddings
@@ -189,12 +189,12 @@ public struct EmbedResponse: Codable {
 
 // MARK: - Model
 public struct Model: Codable {
-    let name, model: String
-    let size: Int
-    let digest: String
-    let details: Details
-    let expiresAt: String
-    let sizeVRAM: Int
+    public let name, model: String
+    public let size: Int
+    public let digest: String
+    public let details: Details
+    public let expiresAt: String
+    public let sizeVRAM: Int
 
     enum CodingKeys: String, CodingKey {
         case name, model, size, digest, details
@@ -205,9 +205,9 @@ public struct Model: Codable {
 
 // MARK: - Details
 public struct Details: Codable {
-    let parentModel, format, family: String
-    let families: [String]
-    let parameterSize, quantizationLevel: String
+    public let parentModel, format, family: String
+    public let families: [String]
+    public let parameterSize, quantizationLevel: String
 
     enum CodingKeys: String, CodingKey {
         case parentModel = "parent_model"
@@ -219,19 +219,19 @@ public struct Details: Codable {
 
 // MARK: - ModelOptions
 public struct ModelOptions: Codable {
-    let numKeep, seed, numPredict, topK: Int?
-    let topP: Double?
-    let minP: Int?
-    let typicalP: Double?
-    let repeatLastN: Int?
-    let temperature, repeatPenalty, presencePenalty: Double?
-    let frequencyPenalty: Int?
-    let penalizeNewline: Bool?
-    let stop: [String]?
-    let numa: Bool?
-    let numCtx, numBatch, numGPU, mainGPU: Int?
-    let useMmap: Bool?
-    let numThread: Int?
+    public let numKeep, seed, numPredict, topK: Int?
+    public let topP: Double?
+    public let minP: Int?
+    public let typicalP: Double?
+    public let repeatLastN: Int?
+    public let temperature, repeatPenalty, presencePenalty: Double?
+    public let frequencyPenalty: Int?
+    public let penalizeNewline: Bool?
+    public let stop: [String]?
+    public let numa: Bool?
+    public let numCtx, numBatch, numGPU, mainGPU: Int?
+    public let useMmap: Bool?
+    public let numThread: Int?
 
     enum CodingKeys: String, CodingKey {
         case numKeep = "num_keep"
@@ -294,7 +294,7 @@ struct GenerateCompletionRequest: Codable {
     let template: String?
     let raw: Bool?
     let keepAlive: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case stream, model, prompt, suffix
         case images, think, format, options
@@ -313,8 +313,8 @@ struct GenerateChatCompletionRequest: Codable {
     let format: Data?
     let options: ModelOptions?
     let keepAlive: String?
-    
-    
+
+
     enum CodingKeys: String, CodingKey {
         case stream, model, think, messages, tools, format, options
         case keepAlive = "keep_alive"
@@ -327,7 +327,7 @@ struct EmbedRequest: Codable {
     let truncate: Bool?
     let options: ModelOptions?
     let keepAlive: String?
-    
+
     init(
         model: String,
         input: String,
@@ -341,7 +341,7 @@ struct EmbedRequest: Codable {
         self.truncate = truncate
         self.options = options
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case model, input, truncate, options
         case keepAlive = "keep_alive"
