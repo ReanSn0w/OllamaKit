@@ -51,14 +51,35 @@ public struct GenerateChatCompletionResponse: Codable {
 }
 
 // MARK: - Message
-public struct Message: Codable {
-    public let role: String
+public class Message: Identifiable, Codable {
+    public let role: Role
     public let content: String
     public let thinking: String?
     public let images: [Data]?
     public let toolCalls: [ToolCall]?
 
-    enum CodingKeys: String, CodingKey {
+    public init(
+        role: Role = .user,
+        content: String,
+        thinking: String? = nil,
+        images: [Data]? = nil,
+        toolCalls: [ToolCall]? = nil
+    ) {
+        self.role = role
+        self.content = content
+        self.thinking = thinking
+        self.images = images
+        self.toolCalls = toolCalls
+    }
+
+    public enum Role: String, Codable {
+        case system
+        case user
+        case assistant
+        case tool
+    }
+
+    public enum CodingKeys: String, CodingKey {
         case role
         case content
         case thinking
